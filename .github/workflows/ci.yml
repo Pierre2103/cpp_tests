@@ -20,18 +20,19 @@ jobs:
 
     - name: Clean build directory
       run: |
-        if [ -d build ]; then
-          rm -rf build
-        fi
+        rm -rf build
     
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y cmake build-essential
 
     - name: Configure project
-      run: cmake -S . -B build
+      run: |
+        cmake -S . -B build
 
     - name: Build project
-      run: cmake --build build
+      run: |
+        cmake --build build
 
     - name: Run unit tests
-      run: cd build && ctest --output-on-failure
+      run: |
+        cd build && ctest --output-on-failure
